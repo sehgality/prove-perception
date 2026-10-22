@@ -1,0 +1,70 @@
+/**:
+  ros__parameters:
+    lidar.frame_id: sim_lidar
+    lidar.topic: /sensors/lidar/points
+    lidar.min_range: 0.5
+    lidar.max_range: 80.0
+    lidar.ground_z_max: -0.3
+
+    fusion.sync_slop_sec: 0.05
+    fusion.min_frustum_points: 8
+    fusion.dbscan_eps: 0.5
+    fusion.dbscan_min_samples: 5
+    fusion.min_cluster_points: 10
+    fusion.max_object_range: 40.0
+    fusion.min_object_range: 0.5
+
+    cameras.front.frame_id: camera_front_optical_frame
+    cameras.front.image_topic: /sensors/camera/front/image_raw
+    cameras.front.info_topic: /sensors/camera/front/camera_info
+    cameras.front.fx: 320.0
+    cameras.front.fy: 320.0
+    cameras.front.cx: 320.0
+    cameras.front.cy: 240.0
+    cameras.front.width: 416
+    cameras.front.height: 416
+    cameras.front.T_lidar_cam: [0.0, 0.0, 1.0, 1.5, -1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.2, 0.0, 0.0, 0.0, 1.0]
+
+    cameras.left.frame_id: camera_left_optical_frame
+    cameras.left.image_topic: /sensors/camera/left/image_raw
+    cameras.left.info_topic: /sensors/camera/left/camera_info
+    cameras.left.fx: 320.0
+    cameras.left.fy: 320.0
+    cameras.left.cx: 320.0
+    cameras.left.cy: 240.0
+    cameras.left.width: 416
+    cameras.left.height: 416
+    cameras.left.T_lidar_cam: [1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0, 0.7, 0.0, -1.0, 0.0, 1.2, 0.0, 0.0, 0.0, 1.0]
+
+    cameras.right.frame_id: camera_right_optical_frame
+    cameras.right.image_topic: /sensors/camera/right/image_raw
+    cameras.right.info_topic: /sensors/camera/right/camera_info
+    cameras.right.fx: 320.0
+    cameras.right.fy: 320.0
+    cameras.right.cx: 320.0
+    cameras.right.cy: 240.0
+    cameras.right.width: 416
+    cameras.right.height: 416
+    cameras.right.T_lidar_cam: [-1.0, 0.0, 0.0, 0.5, 0.0, 0.0, -1.0, -0.7, 0.0, -1.0, 0.0, 1.2, 0.0, 0.0, 0.0, 1.0]
+
+    detector.weights: yolov8n.pt
+    detector.conf_threshold: 0.1
+    detector.iou_threshold: 0.5
+    detector.input_size: 640
+    detector.device: cuda:0
+    detector.frame_skip: 1
+    detector.use_tensorrt: false
+
+    lane.camera: front
+    lane.white_l_min: 200
+    lane.yellow_h_min: 15
+    lane.yellow_h_max: 35
+    lane.yellow_s_min: 100
+    lane.roi_top_frac: 0.55
+    lane.n_windows: 9
+    lane.window_margin_px: 80
+    lane.min_pixels_per_window: 40
+    lane.max_lane_range: 25.0
+    lane.lane_resample_m: 0.5
+    lane.ground_ransac_dist: 0.1
+    lane.ground_ransac_iters: 100

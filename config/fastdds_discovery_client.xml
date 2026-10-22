@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  Fast DDS discovery-client config for the JETSON (and any other ROS2
+  node that should talk to the Windows machine running Isaac Sim).
+
+  Use this ONLY if multicast discovery fails on your network (common on
+  campus WiFi, mixed Windows/Linux subnets, or anywhere IGMP snooping is
+  weird). On a quiet wired LAN, the default multicast config works and
+  you don't need this file at all.
+
+  Steps to use:
+    1. On the Windows (Isaac Sim) PC, start a discovery server:
+         fastdds discovery -i 0
+       It listens on 11811 by default. Leave it running.
+    2. Set FASTRTPS_DEFAULT_PROFILES_FILE to the path of this file on
+       both machines, OR set ROS_DISCOVERY_SERVER=<server-ip>:11811 .
+    3. Replace 192.168.1.50 below with the Windows PC's actual IP.
+    4. Launch ROS nodes normally.
+
+  Verify from the Jetson: `ros2 topic list` should show the Isaac topics.
+-->
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+  <participant profile_name="default_participant" is_default_profile="true">
+    <rtps>
+      <builtin>
+        <discovery_config>
+          <discoveryProtocol>CLIENT</discoveryProtocol>
+          <discoveryServersList>
+            <RemoteServer prefix="44.53.00.5f.45.50.52.4f.56.45.00.00">
+              <metatrafficUnicastLocatorList>
+                <locator>
+                  <udpv4>
+                    <!-- CHANGE THIS to the Windows PC IP -->
+                    <address>192.168.1.50</address>
+                    <port>11811</port>
+                  </udpv4>
+                </locator>
+              </metatrafficUnicastLocatorList>
+            </RemoteServer>
+          </discoveryServersList>
+        </discovery_config>
+      </builtin>
+    </rtps>
+  </participant>
+</profiles>
